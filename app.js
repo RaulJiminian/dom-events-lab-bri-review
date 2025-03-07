@@ -3,6 +3,10 @@
 //const numbersEl = document.querySelectorAll("button number");
 //const operatorEl = document.querySelectorAll("button operator");
 /*-------------------------------- Variables --------------------------------*/
+// create variable to hold what number(s) STRING
+let num1 = ""
+let num2 = ""
+let operator = ""
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -12,29 +16,43 @@ const display = document.querySelector(".display")
 /*----------------------------- Event Listeners -----------------------------*/
 
 calculator.addEventListener('click', (event) => {
-  // This log is for testing purposes to verify we're getting the correct value
-  // You have to click a button to see this log
   console.log(event.target.innerText);
 
   
   if (event.target.classList.contains('number')) {
-    // Do something with a number
-    // Capture first number
     let y = event.target.innerText
-    // put it into the screen
-    display.textContent = y
+    if (operator === '') {
+      num1 += y
+      display.textContent = num1
+    } else {
+      num2 += y
+      display.textContent = num2
+    }
   }
 
   if (event.target.classList.contains('operator')) {
-    let z = event.target.innerText
-    display.textContent = z
+    operator = event.target.innerText
+    display.textContent = operator
   }
 
-
-  // Example
-  if (event.target.innerText === '*') {
-    // Do something with this operator
+  if (event.target.classList.contains('equals')) {
+    if (operator === '*') {
+      let result = parseInt(num1) * parseInt(num2)
+      display.textContent = result
+    } else if (operator === '/') {
+      let result = parseInt(num1) / parseInt(num2)
+      display.textContent = result
+    } else if (operator === '+') {
+      let result = parseInt(num1) + parseInt(num2)
+      display.textContent = result 
+    } else if(operator === '-') {
+      let result = parseInt(num1) - parseInt(num2)
+      display.textContent = result
+    } 
+    
   }
 });
   
+//how does is know what "result"  means
+//what happens when you hit C
 /*-------------------------------- Functions --------------------------------*/
