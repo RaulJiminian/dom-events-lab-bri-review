@@ -16,43 +16,42 @@ const display = document.querySelector(".display")
 /*----------------------------- Event Listeners -----------------------------*/
 
 calculator.addEventListener('click', (event) => {
-  console.log(event.target.innerText);
+  const currentElement = event.target;
 
   
-  if (event.target.classList.contains('number')) {
-    let y = event.target.innerText
+  if (currentElement.classList.contains('number')) {
     if (operator === '') {
-      num1 += y
-      display.textContent = num1
+      num1 += currentElement.innerText;
+      display.innerText = num1
     } else {
-      num2 += y
-      display.textContent = num2
+      num2 += currentElement.innerText;
+      display.innerText = num2
     }
   }
 
-  if (event.target.classList.contains('operator')) {
-    operator = event.target.innerText
-    display.textContent = operator
+  if (currentElement.classList.contains('operator')) {
+    if (operator === "") {
+      operator = currentElement.innerText;
+    }
+    if (currentElement.innerText === "C") {
+      num1 = "";
+      num2 = "";
+      operator = "";
+      display.innerText = "";
+    }
   }
 
-  if (event.target.classList.contains('equals')) {
+  if (currentElement.classList.contains('equals')) {
     if (operator === '*') {
-      let result = parseInt(num1) * parseInt(num2)
-      display.textContent = result
+      display.innerText = parseInt(num1) * parseInt(num2)
     } else if (operator === '/') {
-      let result = parseInt(num1) / parseInt(num2)
-      display.textContent = result
+      display.innerText = parseInt(num1) / parseInt(num2)
     } else if (operator === '+') {
-      let result = parseInt(num1) + parseInt(num2)
-      display.textContent = result 
+      display.innerText = parseInt(num1) + parseInt(num2)
     } else if(operator === '-') {
-      let result = parseInt(num1) - parseInt(num2)
-      display.textContent = result
+      display.innerText = parseInt(num1) - parseInt(num2)
     } 
     
   }
 });
-  
-//how does is know what "result"  means
-//what happens when you hit C
-/*-------------------------------- Functions --------------------------------*/
+
