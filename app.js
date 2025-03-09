@@ -17,7 +17,6 @@ const display = document.querySelector(".display")
 
 calculator.addEventListener('click', (event) => {
   const currentElement = event.target;
-
   
   if (currentElement.classList.contains('number')) {
     if (operator === '') {
@@ -29,7 +28,7 @@ calculator.addEventListener('click', (event) => {
     }
   }
 
-  if (currentElement.classList.contains('operator')) {
+  else if (currentElement.classList.contains('operator')) {
     if (operator === "") {
       operator = currentElement.innerText;
     }
@@ -41,17 +40,27 @@ calculator.addEventListener('click', (event) => {
     }
   }
 
-  if (currentElement.classList.contains('equals')) {
+  
+
+  else if (currentElement.classList.contains('equals')) {
+    let result;
     if (operator === '*') {
-      display.innerText = parseInt(num1) * parseInt(num2)
+      result = parseInt(num1) * parseInt(num2)
     } else if (operator === '/') {
-      display.innerText = parseInt(num1) / parseInt(num2)
+      result = parseInt(num1) / parseInt(num2)
     } else if (operator === '+') {
-      display.innerText = parseInt(num1) + parseInt(num2)
+      result = parseInt(num1) + parseInt(num2)
     } else if(operator === '-') {
-      display.innerText = parseInt(num1) - parseInt(num2)
+      result = parseInt(num1) - parseInt(num2)
     } 
     
+    display.innerText = result 
+
+    num1 = result.toString()
+    num2 = ''
+    operator = ''
   }
+
+  console.log('num1:',num1,'num2:',num2,'op:',operator)
 });
 
